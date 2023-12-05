@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p></p>
+    <ul>
+        <li></li>
+    </ul>
+  </body>
+  <script>
+    async function pokedex() {
+        const body = document.querySelector("body");
+        const ul = document.querySelector("ul");
+        const li = document.querySelector("li");
+      const pokemon = "bulbasaur";
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+      );
+      const responseJSON = await response.json();
+      // console.log(responseJSON);
+      const ability = responseJSON.abilities;
+      const name = responseJSON.name;
+      const exp = responseJSON.base_experience;
+      let base = { ability, name, exp };
+      console.log(base);
+      ability.forEach((el) => {
+        if (el.is_hidden === false) {
+          console.log(el);
+        } else {
+          console.error("Error");
+        }
+      });
+      let p = "";
+      p = `<p>NAME = ${name} XP = ${exp}</p>`;
+      body.innerHTML = p;
+      ability.forEach((str) => {
+        li.innerHTML += str.ability.name;
+        ul.appendChild(li);
+        // console.log(str.ability.name);
+        body.appendChild(ul);
+      })
+    }
+
+    pokedex();
+  </script>
+</html>
+
+<!-- 3. Creare e fare il log di un oggetto con le informazioni principali del pokemon:
+a. name;
+b. base_experience;
+c. abilities;
+
+1. Creare 2 <p> in cui stampare le informazioni a e b del punto 3 e una lista <ul> in
+cui, per ogni <li>, stampare le abilità del Pokemon -->
