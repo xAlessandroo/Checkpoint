@@ -6,7 +6,8 @@
     <title>Document</title>
   </head>
   <body>
-    <p></p>
+    <p class="p1"></p>
+    <p class="p2"></p>
     <ul>
         <li></li>
     </ul>
@@ -34,9 +35,11 @@
           console.error("Error");
         }
       });
-      let p = "";
-      p = `<p>NAME = ${name} XP = ${exp}</p>`;
-      body.innerHTML = p;
+      let p1 = "";
+      let p2 = "";
+      p1 = `<p>NAME = ${name}</p>`;
+      p2 = `<p>XP = ${exp}</p>`;
+      body.innerHTML = p1 + p2;
       ability.forEach((str) => {
         li.innerHTML += str.ability.name;
         ul.appendChild(li);
